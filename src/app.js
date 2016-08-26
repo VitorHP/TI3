@@ -1,27 +1,29 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Loading from 'react-loading';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createLogger from 'redux-logger';
+import { reducer } from './js/reducers';
 
-var client_id = 'YOUR SOUNDCLOUD APP ID';
+import TableContainer from './js/components/table_container';
 
-class Main extends Component {
-  constructor(props){
-    super();
-  }
+const logger = createLogger();
 
+const store = createStore(
+  reducer,
+  applyMiddleware(logger)
+);
+
+class App extends Component {
   render(){
     return (
-      <div className="row">
-        <div className="col-md-9 map">
-          <h1 className="app-title">Map</h1>
-        </div>
-        <div className="col-md-3 toolbox">
-          <h1 className="app-title">Toolbox</h1>
-        </div>
-      </div>
+      <Provider store={store}>
+        <TableContainer {...this.props} />
+      </Provider>
     );
   }
 }
 
 var main = document.getElementById('main');
-ReactDOM.render(<Main />, main);
+ReactDOM.render(<App />, main);
