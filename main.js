@@ -1,12 +1,16 @@
 const electron = require('electron')
+const childProcess = require('child_process')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+console.log('starting electron');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
+let ddpProc;
 
 function createWindow () {
   // Create the browser window.
@@ -27,16 +31,31 @@ function createWindow () {
   })
 }
 
+function createDdp () {
+  console.log('Forking process');
+  ddpProc = childProcess.fork(`${__dirname}/child.js`);
+
+  ddpProc.on('message', (m) => {
+    console.log('PARENT gor message:', m);
+  })
+
+  ddpProc.send({ hello: 'child' });
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', function() {
+  createDdp();
+  createWindow();
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
+    ddpProc.kill()
     app.quit()
   }
 })

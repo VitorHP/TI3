@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.3",
+    "ddp-client": "^0.1.2",
     "node-soundcloud": "0.0.5",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
