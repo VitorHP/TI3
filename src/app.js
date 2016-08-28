@@ -8,6 +8,16 @@ import { reducer } from './js/reducers';
 
 import TableContainer from './js/components/table_container';
 
+const { ipcRenderer } = window.require('electron');
+
+const pingMainProcess = () => {
+  ipcRenderer.send('asynchronous-message', 'ping');
+}
+
+ipcRenderer.on('asynchronous-reply', (event, arg) => {
+  console.log(arg) // prints "pong"
+})
+
 const logger = createLogger();
 
 const store = createStore(
@@ -19,7 +29,7 @@ class App extends Component {
   render(){
     return (
       <Provider store={store}>
-        <TableContainer {...this.props} />
+        <TableContainer ping={pingMainProcess} {...this.props} />
       </Provider>
     );
   }

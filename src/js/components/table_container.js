@@ -5,7 +5,7 @@ import Table from './table';
 class TableContainer extends Component {
   render() {
     return (
-      <Table title={this.props.title}>
+      <Table title={this.props.title} ping={this.props.ping}>
       </Table>
     )
   }

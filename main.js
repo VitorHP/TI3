@@ -5,12 +5,18 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
-console.log('starting electron');
+const { ipcMain } = require('electron')
+
+ipcMain.on('asynchronous-message', (event, arg) => {
+  console.log(arg);
+  event.sender.send('asynchronous-reply', 'pong');
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-let ddpProc;
+let ddpServer;
+let ddpClient;
 
 function createWindow () {
   // Create the browser window.
@@ -31,22 +37,24 @@ function createWindow () {
   })
 }
 
-function createDdp () {
-  console.log('Forking process');
-  ddpProc = childProcess.fork(`${__dirname}/child.js`);
+function createDdpClient () {
+  ddpClient = childProcess.fork(`${__dirname}/ddp-client.js`)
+}
 
-  ddpProc.on('message', (m) => {
+function createDdpServer () {
+  ddpServer = childProcess.fork(`${__dirname}/ddp-server.js`);
+
+  ddpServer.on('message', (m) => {
     console.log('PARENT gor message:', m);
   })
 
-  ddpProc.send({ hello: 'child' });
+  ddpServer.send({ hello: 'child' });
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', function() {
-  createDdp();
   createWindow();
 })
 
@@ -55,7 +63,6 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    ddpProc.kill()
     app.quit()
   }
 })
