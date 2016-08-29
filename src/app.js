@@ -6,29 +6,8 @@ import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import { reducer } from './js/reducers';
 
-import TableContainer from './js/components/table_container';
-
-const { ipcRenderer } = window.require('electron');
-
-const startDdpServer = () => {
-  ipcRenderer.send('asynchronous-message', { type: 'start-ddp-server' });
-}
-
-const startDdpClient = () => {
-  ipcRenderer.send('asynchronous-message', { type: 'start-ddp-client' });
-}
-
-const hello = (message) => {
-  ipcRenderer.send('asynchronous-message', { type: 'say-hello', payload: message });
-}
-
-ipcRenderer.on('asynchronous-reply', (event, action) => {
-  console.log(action)
-})
-
-ipcRenderer.on('hello-response', (event, action) => {
-  console.log(action)
-})
+// import TableContainer from './js/components/table_container';
+import DDPContainer from './js/components/ddp_container';
 
 const logger = createLogger();
 
@@ -41,11 +20,7 @@ class App extends Component {
   render(){
     return (
       <Provider store={store}>
-        <TableContainer
-          talk={startDdpServer}
-          listen={startDdpClient}
-          hello={hello}
-          {...this.props} />
+        <DDPContainer {...this.props} />
       </Provider>
     );
   }

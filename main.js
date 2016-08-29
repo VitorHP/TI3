@@ -45,18 +45,16 @@ function createDdpServer () {
   ddpServer = childProcess.fork(`${__dirname}/ddp-server.js`);
 
   ddpServer.on('message', (m) => {
-    console.log('PARENT gor message:', m);
-    mainWindow.send('hello-response', m);
+    mainWindow.send('ddp-receive', m);
   })
 
   app.on('will-quit', function() {
     ddpServer.kill();
   })
-
 }
 
-ipcMain.on('asynchronous-message', (event, action) => {
-  switch (action.type) {
+ipcMain.on('asynchronous-message', (event, command) => {
+  switch (command.slug) {
     case 'start-ddp-server':
       createDdpServer();
       event.sender.send('asynchronous-reply', { type: 'create-ddp-server-response', payload: true });
@@ -65,8 +63,9 @@ ipcMain.on('asynchronous-message', (event, action) => {
       createDdpClient();
       event.sender.send('asynchronous-reply', { type: 'create-ddp-client-response', payload: true });
       break;
-    case 'say-hello':
-      ddpClient.send({ type: 'hello', payload: action.payload });
+    case 'ddp-send':
+      console.log('sent to ddpCLient', command.payload)
+      ddpClient.send({ method: 'test', payload: command.payload });
       break;
   }
 });

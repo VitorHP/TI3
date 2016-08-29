@@ -74,9 +74,9 @@ var oid = new ddpclient.EJSON.ObjectID();
 
 process.on('message', function(action){
 
-  switch (action.type) {
-    case 'hello':
-      console.log('DDP Client sending message:', action);
+  switch (action.method) {
+    case 'test':
+      console.log('sent to ddp server', action);
       ddpclient.call(
         'test',
         [action.payload],
