@@ -5,7 +5,12 @@ import Table from './table';
 class TableContainer extends Component {
   render() {
     return (
-      <Table title={this.props.title} ping={this.props.ping}>
+      <Table
+        title={this.props.title}
+        talk={this.props.talk}
+        listen={this.props.listen}
+        hello={this.props.hello}
+        >
       </Table>
     )
   }

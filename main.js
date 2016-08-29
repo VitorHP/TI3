@@ -7,11 +7,6 @@ const BrowserWindow = electron.BrowserWindow
 
 const { ipcMain } = require('electron')
 
-ipcMain.on('asynchronous-message', (event, arg) => {
-  console.log(arg);
-  event.sender.send('asynchronous-reply', 'pong');
-});
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -39,6 +34,11 @@ function createWindow () {
 
 function createDdpClient () {
   ddpClient = childProcess.fork(`${__dirname}/ddp-client.js`)
+
+  app.on('will-quit', function() {
+    ddpClient.kill();
+  })
+
 }
 
 function createDdpServer () {
@@ -46,10 +46,30 @@ function createDdpServer () {
 
   ddpServer.on('message', (m) => {
     console.log('PARENT gor message:', m);
+    mainWindow.send('hello-response', m);
   })
 
-  ddpServer.send({ hello: 'child' });
+  app.on('will-quit', function() {
+    ddpServer.kill();
+  })
+
 }
+
+ipcMain.on('asynchronous-message', (event, action) => {
+  switch (action.type) {
+    case 'start-ddp-server':
+      createDdpServer();
+      event.sender.send('asynchronous-reply', { type: 'create-ddp-server-response', payload: true });
+      break;
+    case 'start-ddp-client':
+      createDdpClient();
+      event.sender.send('asynchronous-reply', { type: 'create-ddp-client-response', payload: true });
+      break;
+    case 'say-hello':
+      ddpClient.send({ type: 'hello', payload: action.payload });
+      break;
+  }
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

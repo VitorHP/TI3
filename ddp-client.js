@@ -39,22 +39,6 @@ ddpclient.connect(function(error, wasReconnect) {
 
   console.log('connected!');
 
-  setTimeout(function () {
-    /*
-     * Call a Meteor Method
-     */
-    ddpclient.call(
-      'test',             // name of Meteor Method being called
-      ['foo', 'bar'],            // parameters to send to Meteor Method
-      function (err, result) {   // callback which returns the method call results
-        console.log('called function, result: ' + result);
-      },
-      function () {              // callback which fires when server has finished
-        console.log('updated');  // sending any updated documents as a result of
-      }
-    );
-  }, 3000);
-
 });
 
 /*
@@ -87,3 +71,22 @@ ddpclient.on('socket-error', function(error) {
  * You can access the EJSON object used by ddp.
  */
 var oid = new ddpclient.EJSON.ObjectID();
+
+process.on('message', function(action){
+
+  switch (action.type) {
+    case 'hello':
+      console.log('DDP Client sending message:', action);
+      ddpclient.call(
+        'test',
+        [action.payload],
+        function(err, result) {
+          console.log('called: ' + result);
+        },
+        function() {
+          console.log('updated');
+        }
+      );
+      break;
+  }
+})
