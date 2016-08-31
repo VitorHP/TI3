@@ -45,6 +45,7 @@ function createDdpServer () {
   ddpServer = childProcess.fork(`${__dirname}/ddp-server.js`);
 
   ddpServer.on('message', (m) => {
+    console.log('sending to browser window');
     mainWindow.send('ddp-receive', m);
   })
 
@@ -54,6 +55,7 @@ function createDdpServer () {
 }
 
 ipcMain.on('asynchronous-message', (event, command) => {
+
   switch (command.slug) {
     case 'start-ddp-server':
       createDdpServer();
@@ -64,8 +66,9 @@ ipcMain.on('asynchronous-message', (event, command) => {
       event.sender.send('asynchronous-reply', { type: 'create-ddp-client-response', payload: true });
       break;
     case 'ddp-send':
-      console.log('sent to ddpCLient', command.payload)
-      ddpClient.send({ method: 'test', payload: command.payload });
+      if (ddpClient) {
+        ddpClient.send({ method: 'test', payload: command.payload });
+      }
       break;
   }
 });

@@ -34,7 +34,7 @@ gulp.task('sass', function () {
   return gulp.src('./src/sass/**/*.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist/css'))
-    .pipe(livereload());
+    // .pipe(livereload());
 });
 
 gulp.task('deploy', function (){
@@ -42,7 +42,7 @@ gulp.task('deploy', function (){
 });
 
 gulp.task('watch', function () {
-  livereload.listen();
+  // livereload.listen();
 	gulp.watch('src/**/*.js', ['scripts']);
   gulp.watch('src/sass/**/*.sass', ['sass']);
 });
@@ -54,8 +54,8 @@ gulp.task('run', function() {
 // When running 'gulp' on the terminal this task will fire.
 // It will start watching for changes in every .js file.
 // If there's a change, the task 'scripts' defined above will fire.
-gulp.task('default', ['scripts']);
-// gulp.task('default', ['scripts', 'sass', 'watch', 'run']);
+// gulp.task('default', ['scripts']);
+gulp.task('default', ['scripts', 'sass', 'watch']);
 
 // Private Functions
 // ----------------------------------------------------------------------------
@@ -98,5 +98,5 @@ function bundleApp(isProduction) {
 	    .on('error',gutil.log)
 	    .pipe(source('app.js'))
 	    .pipe(gulp.dest('./dist/js/'))
-      .pipe(livereload());
+      // .pipe(livereload());
 }

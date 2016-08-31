@@ -3,8 +3,8 @@ var ddp = new DDPServer({});
 
 ddp.methods({
   test: function(payload) {
-    console.log('received in ddp-server')
-    process.send({ payload })
+    console.log('received in ddp-server', payload)
+    process.send(payload)
   }
 });
 
