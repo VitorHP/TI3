@@ -6,7 +6,7 @@ import AppContainer from './containers/app_container';
 
 export default (
   <Route path="/" component={AppContainer}>
-    <IndexRoute component={LobbyContainer}/>
+    <IndexRoute component={TableContainer}/>
     <Route path="table" component={TableContainer}/>
   </Route>
 )

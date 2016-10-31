@@ -7,7 +7,6 @@ let initialState = {
 export function ddp(state = initialState, action) {
   switch (action.type) {
     case 'DDP_RECEIVE':
-      debugger
       return Object.assign({}, state, action.payload);
       break;
     case CHANGE_SHARED_TITLE:
