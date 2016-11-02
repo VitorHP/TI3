@@ -3,7 +3,15 @@ import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
 let initialState = {
-  title: "Initial Title"
+  title: "Initial Title",
+  config: {
+    width: 800,
+    height: 800,
+    layout: { width: 10, height: 10, flat: true, spacing: 1.01 },
+    origin: { x: 0, y: 0 },
+    map: 'hexagon',
+    mapProps: [ 2 ]
+  }
 }
 
 function reducer(state = initialState, action) {

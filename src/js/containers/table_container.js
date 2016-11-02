@@ -7,7 +7,12 @@ import { changeSharedTitle } from '../actions_shared';
 import Table from '../components/table';
 
 function mapStateToProps(state, props) {
+  const {
+    config
+  } = state.reducer;
+
   return {
+    config
   }
 }
 
