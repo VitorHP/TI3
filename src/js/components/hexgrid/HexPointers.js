@@ -53,8 +53,8 @@ class HexPointers extends React.Component {
       <g>
         {
           polygons.map((points, index) => {
-            // return <polygon key={index} points={points} />
-            return <path d={points} />
+            return <polygon key={index} points={points} />
+            // return <path d={points} />
           })
         }
       </g>
