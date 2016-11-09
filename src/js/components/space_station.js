@@ -3,7 +3,7 @@ import React from 'react';
 export default function SpaceStation(props) {
   return (
     <svg>
-      <g {...props}>
+      <g  className="unit space-station" {...props}>
         <g transform="translate(-240.14197,-14.136815)" >
           <g transform="translate(-21.480406,5.0643031)" id="g5385">
             <path d="M 316.2233,12.350033 Z" id="path4598"/>

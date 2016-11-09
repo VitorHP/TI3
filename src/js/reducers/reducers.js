@@ -10,7 +10,7 @@ let initialState = {
     layout: { width: 10, height: 10, flat: true, spacing: 1.01 },
     origin: { x: 0, y: 0 },
     map: 'hexagon',
-    mapProps: [ 2 ]
+    mapProps: [ 3 ]
   }
 }
 
