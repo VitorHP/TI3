@@ -2,16 +2,25 @@ import { CHANGE_TITLE } from '../constants';
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
+import GridGenerator from '../components/hexgrid/GridGenerator';
+
+const gridConfig = {
+  width: 800,
+  height: 800,
+  origin: { x: 0, y: 0 },
+  map: 'hexagon',
+  mapProps: [ 1 ]
+}
+
 let initialState = {
   title: "Initial Title",
-  config: {
-    width: 800,
-    height: 800,
+  grid: {
+    config: gridConfig,
+    hexagons: GridGenerator
+      .getGenerator(gridConfig.map)
+      .apply(this, gridConfig.mapProps),
     layout: { width: 10, height: 10, flat: true, spacing: 1.01 },
-    origin: { x: 0, y: 0 },
-    map: 'hexagon',
-    mapProps: [ 3 ]
-  }
+  },
 }
 
 function reducer(state = initialState, action) {

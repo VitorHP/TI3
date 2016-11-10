@@ -39,7 +39,7 @@ class GridGenerator {
       let r1 = Math.max(-mapRadius, -q - mapRadius);
       let r2 = Math.min(mapRadius, -q + mapRadius);
       for (let r = r1; r <= r2; r++) {
-        hexas.push(new Hex(q, r, -q-r, { text: "T" }));
+        hexas.push([q, r, -q-r, {}]);
       }
     }
 

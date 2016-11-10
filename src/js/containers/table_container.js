@@ -8,10 +8,14 @@ import Table from '../components/table';
 
 function mapStateToProps(state, props) {
   const {
+    hexagons,
+    layout,
     config
-  } = state.reducer;
+  } = state.reducer.grid;
 
   return {
+    hexagons,
+    layout,
     config
   }
 }
