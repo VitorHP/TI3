@@ -17,16 +17,20 @@ class HexGrid extends React.Component {
 
   render() {
     return (
-      <svg className="grid" width={this.props.width} height={this.props.height} viewBox="-50 -50 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        {
-          this.props.hexagons.map((hex, index) => {
-            return (
-              <HexShape key={index} hex={hex} layout={this.props.layout} />
-            );
-          })
-        }
-        <Path {...this.state.path} layout={this.props.layout} />
-      </svg>
+      <div className="grid">
+        <svg className="grid_svg" width="1800px" height="2000px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(900, 1000)">
+            {
+              this.props.hexagons.map((hex, index) => {
+                return (
+                  <HexShape key={index} hex={hex} layout={this.props.layout} />
+                );
+              })
+            }
+            <Path {...this.state.path} layout={this.props.layout} />
+          </g>
+        </svg>
+      </div>
     );
   }
 

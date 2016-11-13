@@ -1,8 +1,10 @@
 import React from 'react';
 const { object } = React.PropTypes
+
 import HexPattern from './HexPattern';
 import HexPointers from './HexPointers';
 import HexUtils from './HexUtils';
+import Fleet from '../fleet';
 
 class HexShape extends React.Component {
 
@@ -36,6 +38,9 @@ class HexShape extends React.Component {
         <polygon points={points} style={styles} />
         <HexPointers hex={hex} points={points} />
         <text x="0" y="0.3em" textAnchor="middle">{text}</text>
+        <foreignObject x="-70" y="-125">
+          <Fleet units={['fighter', 'fighter', 'fighter', 'fighter', 'pds', 'carrier', 'war-sun', 'destroyer', 'dreadnought', 'cruiser']}/>
+        </foreignObject>
       </g>
     );
   }

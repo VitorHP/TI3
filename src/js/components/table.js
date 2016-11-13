@@ -45,4 +45,3 @@ export default Table;
   // <Dreadnought transform="scale(.5),translate(600 0)"/>
   // <WarSun transform="scale(.5),translate(700, 0)"/>
   // <SpaceStation transform="scale(.5),translate(800, 0)"/>
-  // <Fleet />

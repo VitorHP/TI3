@@ -9,7 +9,7 @@ const gridConfig = {
   height: 800,
   origin: { x: 0, y: 0 },
   map: 'hexagon',
-  mapProps: [ 1 ]
+  mapProps: [ 3 ]
 }
 
 let initialState = {
@@ -19,7 +19,7 @@ let initialState = {
     hexagons: GridGenerator
       .getGenerator(gridConfig.map)
       .apply(this, gridConfig.mapProps),
-    layout: { width: 10, height: 10, flat: true, spacing: 1.01 },
+    layout: { width: 150, height: 150, flat: true, spacing: 1.02 },
   },
 }
 
