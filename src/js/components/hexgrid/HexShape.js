@@ -36,7 +36,7 @@ class HexShape extends React.Component {
     return (
       <g className="shape-group" transform={this.translate()} draggable="true">
         <HexPattern hex={hex} />
-        <polygon points={points} style={styles} />
+        <polygon points={points} style={styles} className="system" />
         <text x="0" y="120" textAnchor="middle" >{text}</text>
         <foreignObject x="-70" y="-125">
           <Fleet units={['fighter', 'fighter', 'fighter', 'fighter', 'pds', 'carrier', 'war-sun', 'destroyer', 'dreadnought', 'cruiser']}/>
