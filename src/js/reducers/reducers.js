@@ -16,26 +16,22 @@ const gridConfig = {
 //       .apply(this, gridConfig.mapProps)
 let initialState = {
   title: "Initial Title",
-  planets: [
-    {
+  planets: {
+    arretze: {
       name: "Arretze",
-      slug: "arretze",
     },
-    {
+    hercant: {
       name: "Hercant",
-      slug: "hercant",
     },
-    {
+    kamdorn: {
       name: "Kamdorn",
-      slug: "kamdorn",
-    },
-  ],
-  races: [
-    {
-      name: "Emirates of Hacan",
-      slug: "hacan",
     }
-  ],
+  },
+  races: {
+    hacan: {
+      name: "Emirates of Hacan",
+    }
+  },
   grid: {
     config: gridConfig,
     hexagons: [
@@ -43,6 +39,10 @@ let initialState = {
         q: -3,
         r: 0,
         s: 3,
+        system: {
+          kind: "SpecialSystem",
+          name: "Super Nova"
+        }
       },
       {
         q: -3,
@@ -57,20 +57,25 @@ let initialState = {
       {
         q: -3,
         r: 3,
-        s: 0
+        s: 0,
+        system: {
+          kind: "SpecialSystem",
+          name: "Asteroid Belt"
+        }
       },
       {
         q: -2,
         r: -1,
         s: 3,
-        props: {
-          home: "hacan",
+        system: {
+          homeOwner: "hacan",
+          kind: "TriplePlanetHomeSystem",
           troops: [{
             owner: "hacan",
             units: ["fighter", "pds", "ground-force", "carrier"],
           }],
           planets: [{
-            slug: "arretze",
+            id: "arretze",
             owner: "hacan",
             troops: [{
               owner: "hacan",
@@ -78,7 +83,7 @@ let initialState = {
             }]
           },
           {
-            slug: "hercant",
+            id: "hercant",
             owner: "hacan",
             troops: [{
               owner: "hacan",
@@ -86,7 +91,7 @@ let initialState = {
             }]
           },
           {
-            slug: "kamdorn",
+            id: "kamdorn",
             owner: "hacan",
           }],
         }

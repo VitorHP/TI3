@@ -7,17 +7,7 @@ import { changeSharedTitle } from '../actions_shared';
 import Table from '../components/table';
 
 function mapStateToProps(state, props) {
-  const {
-    hexagons,
-    layout,
-    config
-  } = state.reducer.grid;
-
-  return {
-    hexagons,
-    layout,
-    config
-  }
+  return { }
 }
 
 function mapDispatchToProps(state, props) {

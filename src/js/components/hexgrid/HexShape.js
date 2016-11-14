@@ -8,8 +8,8 @@ import Fleet from '../fleet';
 
 class HexShape extends React.Component {
 
-  getPoints(hex) {
-    let points = this.props.layout.getPolygonPoints(hex)
+  getPoints() {
+    let points = this.props.layout.getPolygonPoints(this.props.hex)
 
     return points.map(point => {
       return point.x + ',' + point.y;
@@ -22,8 +22,8 @@ class HexShape extends React.Component {
     return `translate(${pixel.x}, ${pixel.y})`;
   }
 
-  getStyles(hex) {
-    return (hex.props == {} || typeof(hex.props.image) === "undefined") ? {} : { fill: 'url(#'+ HexUtils.getID(hex) +')' };
+  getStyles() {
+    return (this.props.hex.props == {} || typeof(this.props.hex.props.image) === "undefined") ? {} : { fill: 'url(#'+ HexUtils.getID(this.props.hex) +')' };
   }
 
   render() {
