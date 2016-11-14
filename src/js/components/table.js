@@ -19,7 +19,11 @@ class Table extends Component {
   render() {
     const { hexagons, layout, config } = this.props;
 
-    const _hexagons = hexagons.map((h) => new Hex(...h))
+    const _hexagons = hexagons.map((h) => {
+      const { q, r, s, props } = h;
+
+      return new Hex(q, r, s, props);
+    })
     const _layout = new Layout(layout, config.origin)
 
     return (

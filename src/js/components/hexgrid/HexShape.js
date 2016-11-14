@@ -28,16 +28,16 @@ class HexShape extends React.Component {
 
   render() {
     let hex = this.props.hex;
-    let text = (hex.props.text) ? hex.props.text : HexUtils.getID(hex);
+    let text = (hex.props.home) ? hex.props.home : HexUtils.getID(hex);
     let actions = this.props.actions;
     let styles = this.getStyles(hex);
     let points = this.getPoints(hex);
+
     return (
       <g className="shape-group" transform={this.translate()} draggable="true">
         <HexPattern hex={hex} />
         <polygon points={points} style={styles} />
-        <HexPointers hex={hex} points={points} />
-        <text x="0" y="0.3em" textAnchor="middle">{text}</text>
+        <text x="0" y="120" textAnchor="middle" >{text}</text>
         <foreignObject x="-70" y="-125">
           <Fleet units={['fighter', 'fighter', 'fighter', 'fighter', 'pds', 'carrier', 'war-sun', 'destroyer', 'dreadnought', 'cruiser']}/>
         </foreignObject>
