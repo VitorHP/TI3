@@ -12,12 +12,17 @@ const name = (system, state) => {
   return system.name;
 }
 
+const systemTroops = (system, state) => {
+  return system.troops;
+}
+
 const triplePlanetHomeSystem = createSelector(
-  [kind, homeOwner],
-  (kind, homeOwner) => {
+  [kind, homeOwner, systemTroops],
+  (kind, homeOwner, systemTroops) => {
     return {
       kind,
       homeOwner,
+      systemTroops,
     }
   }
 )

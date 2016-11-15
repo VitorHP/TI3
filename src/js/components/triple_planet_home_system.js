@@ -8,7 +8,7 @@ import Planet from './planet';
 export default function TriplePlanetHomeSystem(props) {
   return (
     <HomeSystemShape hex={props.hex} layout={props.layout}>
-      <Fleet units={['ground-forces','ground-forces','ground-forces','ground-forces','carrier', 'carrier', 'cruiser', 'fighter', 'fighter', 'space-dock']}/>
+      <Fleet troops={props.hex.props.systemTroops}/>
       <Planet x={-110} y={-10} name={"Arretze"}/>
       <Planet x={25} y={-10} name={"Hercant"}/>
       <Planet x={-50} y={-85} name={"Kamdorn"}/>
@@ -19,4 +19,5 @@ export default function TriplePlanetHomeSystem(props) {
 
 TriplePlanetHomeSystem.propTypes = {
   homeOwner: PropTypes.string.isRequired,
+  systemTroops: PropTypes.array.isRequired
 }

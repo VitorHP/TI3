@@ -6,7 +6,7 @@ import DefaultSystemShape from './default_system_shape';
 export default function TriplePlanetHomeSystem(props) {
   return (
     <DefaultSystemShape hex={props.hex} layout={props.layout}>
-      <Fleet units={[]}/>
+      <Fleet troops={{}}/>
     </DefaultSystemShape>
   )
 }

@@ -17,7 +17,7 @@ export default function Planet(props) {
             </div>
           </div>
         </foreignObject>
-        <Fleet x={20} y={60} units={["ground-forces", 'pds', 'space-dock']} />
+        <Fleet x={20} y={60} troops={{}} />
       </g>
     </svg>
   )

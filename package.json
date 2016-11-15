@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.3",
+    "dashify": "^0.2.2",
     "ddp-client": "^0.1.2",
     "node-soundcloud": "0.0.5",
     "react": "^15.3.2",

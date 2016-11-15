@@ -16,15 +16,38 @@ const gridConfig = {
 //       .apply(this, gridConfig.mapProps)
 let initialState = {
   title: "Initial Title",
+  units: {
+    groundForces: {
+      battle: 9,
+    },
+    cruiser: {
+      battle: 7,
+    },
+    spaceDock: {
+      battle: 0,
+    },
+    carrier: {
+      battle: 9,
+    },
+    fighter: {
+      battle: 9,
+    }
+  },
   planets: {
     arretze: {
       name: "Arretze",
+      resources: 2,
+      influence: 0
     },
     hercant: {
       name: "Hercant",
+      resources: 1,
+      influence: 1
     },
     kamdorn: {
       name: "Kamdorn",
+      resources: 0,
+      influence: 1
     }
   },
   races: {
@@ -70,25 +93,19 @@ let initialState = {
         system: {
           homeOwner: "hacan",
           kind: "TriplePlanetHomeSystem",
-          troops: [{
-            owner: "hacan",
-            units: ["fighter", "pds", "ground-force", "carrier"],
-          }],
+          troops: {
+            hacan: ["groundForces", "groundForces", "groundForces", "groundForces", "carrier", "carrier", "fighter", "fighter", "cruiser"],
+          },
           planets: [{
             id: "arretze",
             owner: "hacan",
-            troops: [{
-              owner: "hacan",
-              units: ["ground-forces", "ground-forces", "pds", "space-dock"]
-            }]
+            troops: {
+              hacan: ["spaceDock"],
+            },
           },
           {
             id: "hercant",
             owner: "hacan",
-            troops: [{
-              owner: "hacan",
-              units: ["ground-forces", "ground-forces"]
-            }]
           },
           {
             id: "kamdorn",
