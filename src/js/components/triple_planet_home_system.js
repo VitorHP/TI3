@@ -1,11 +1,18 @@
 import React, { PropTypes } from 'react';
 import Fleet from './fleet';
+
 import HomeSystemShape from './home_system_shape';
+import SystemLabel from './system_label';
+import Planet from './planet';
 
 export default function TriplePlanetHomeSystem(props) {
   return (
     <HomeSystemShape hex={props.hex} layout={props.layout}>
-      <text x="0" y="120" textAnchor="middle" >{props.hex.props.homeOwner.name}</text>
+      <Fleet units={['ground-forces','ground-forces','ground-forces','ground-forces','carrier', 'carrier', 'cruiser', 'fighter', 'fighter', 'space-dock']}/>
+      <Planet x={-110} y={-10} name={"Arretze"}/>
+      <Planet x={25} y={-10} name={"Hercant"}/>
+      <Planet x={-50} y={-85} name={"Kamdorn"}/>
+      <SystemLabel label={props.hex.props.homeOwner.name}/>
     </HomeSystemShape>
   )
 }

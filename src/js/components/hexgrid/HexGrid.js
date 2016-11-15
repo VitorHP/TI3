@@ -1,8 +1,6 @@
 import React from 'react'
 const { number, object, bool, string, array } = React.PropTypes
 
-import HexShape from './HexShape'
-import Hex from './Hex'
 import Path from './Path'
 import Layout from './Layout'
 import GridGenerator from './GridGenerator'
@@ -25,7 +23,7 @@ class HexGrid extends React.Component {
           <g transform="translate(900, 1000)">
             {
               this.props.hexagons.map((hex, index) => {
-                let HexFactory = HexShape;
+                let HexFactory = Systems.EmptySystem;
 
                 if (hex.props.kind !== undefined) {
                   HexFactory = Systems[hex.props.kind];
