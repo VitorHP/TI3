@@ -38,7 +38,7 @@ export default function Fleet(props) {
 }
 
 Fleet.propTypes = {
-  troops: PropTypes.array.isRequired,
+  troops: PropTypes.object.isRequired,
   x: PropTypes.number,
   y: PropTypes.number
 }

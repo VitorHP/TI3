@@ -96,21 +96,20 @@ let initialState = {
           troops: {
             hacan: ["groundForces", "groundForces", "groundForces", "groundForces", "carrier", "carrier", "fighter", "fighter", "cruiser"],
           },
-          planets: [{
-            id: "arretze",
-            owner: "hacan",
-            troops: {
-              hacan: ["spaceDock"],
+          planets: {
+            arretze: {
+              owner: "hacan",
+              troops: {
+                hacan: ["spaceDock"],
+              },
             },
+            hercant: {
+              owner: "hacan",
+            },
+            kamdorn: {
+              owner: "hacan",
+            }
           },
-          {
-            id: "hercant",
-            owner: "hacan",
-          },
-          {
-            id: "kamdorn",
-            owner: "hacan",
-          }],
         }
       },
       {

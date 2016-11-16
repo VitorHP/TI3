@@ -13,5 +13,4 @@ export default function SpecialSystem(props) {
 }
 
 SpecialSystem.propTypes = {
-  homeOwner: PropTypes.string.isRequired,
 }

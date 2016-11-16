@@ -30,7 +30,7 @@ class HexGrid extends React.Component {
                 }
 
                 return (
-                  <HexFactory key={index} hex={hex} layout={this.props.layout} />
+                  <HexFactory key={index} hex={hex} {...hex.props} layout={this.props.layout} />
                 );
               })
             }

@@ -16,13 +16,27 @@ const systemTroops = (system, state) => {
   return system.troops;
 }
 
+const planets = (system, state) => {
+  return Object.keys(system.planets || {})
+    .reduce((acc, p) => {
+      acc[p] = {
+        ...state.planets[p],
+        owner: state.races[system.planets[p].owner],
+        troops: system.planets[p].troops || {}
+      }
+
+      return acc;
+    }, {})
+}
+
 const triplePlanetHomeSystem = createSelector(
-  [kind, homeOwner, systemTroops],
-  (kind, homeOwner, systemTroops) => {
+  [kind, homeOwner, systemTroops, planets],
+  (kind, homeOwner, systemTroops, planets) => {
     return {
       kind,
       homeOwner,
       systemTroops,
+      planets,
     }
   }
 )
