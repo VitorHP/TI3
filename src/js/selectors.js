@@ -51,6 +51,11 @@ const doublePlanetSystem = createStructuredSelector({
 
 const singlePlanetSystem = doublePlanetSystem;
 
+const emptySystem = createStructuredSelector({
+  kind,
+  systemTroops
+})
+
 const specialSystem = createStructuredSelector({
   kind,
   name
@@ -76,6 +81,7 @@ const Selectors = {
   singlePlanetWormholeSystem,
   specialSystem,
   noOpSystem,
+  emptySystem,
 }
 
 export default Selectors;
