@@ -55,6 +55,12 @@ let initialState = {
       resources: 0,
       influence: 1
     },
+    lodor: {
+      name: "Lodor",
+      resources: 3,
+      influence: 1,
+      specialty: "biologic",
+    },
     lirtaIv: {
       name: "Lirta IV",
       resources: 2,
@@ -86,7 +92,7 @@ let initialState = {
       {
         q: -3,
         r: 2,
-        s: 1
+        s: 1,
       },
       {
         q: -3,
@@ -140,7 +146,15 @@ let initialState = {
       {
         q: -2,
         r: 1,
-        s: 1
+        s: 1,
+        system: {
+          kind: 'SinglePlanetWormholeSystem',
+          troops: { },
+          planets: {
+            lodor: { },
+          },
+          wormholes: ['alpha']
+        }
       },
       {
         q: -2,

@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector, createStructuredSelector } from 'reselect';
 
 const homeOwner = (system, state) => {
   return state.races[system.homeOwner];
@@ -29,36 +29,34 @@ const planets = (system, state) => {
     }, {})
 }
 
-const triplePlanetHomeSystem = createSelector(
-  [kind, homeOwner, systemTroops, planets],
-  (kind, homeOwner, systemTroops, planets) => {
-    return {
-      kind,
-      homeOwner,
-      systemTroops,
-      planets,
-    }
-  }
-)
+const wormholes = (system, state) => {
+  return system.wormholes;
+}
 
-const doublePlanetSystem = createSelector(
-  [kind, systemTroops, planets],
-  (kind, systemTroops, planets) => {
-    return {
-      kind,
-      systemTroops,
-      planets,
-    }
-  }
-)
+const triplePlanetHomeSystem = createStructuredSelector({
+  kind,
+  homeOwner,
+  systemTroops,
+  planets,
+})
 
-const specialSystem = createSelector(
-  [name, kind],
-  (name, kind) => ({
-    kind,
-    name
-  })
-)
+const doublePlanetSystem = createStructuredSelector({
+  kind,
+  systemTroops,
+  planets,
+})
+
+const specialSystem = createStructuredSelector({
+  kind,
+  name
+})
+
+const singlePlanetWormholeSystem = createStructuredSelector({
+  kind,
+  planets,
+  wormholes,
+  systemTroops
+})
 
 const noOpSystem = (system, state) => {
   return system;
@@ -67,6 +65,7 @@ const noOpSystem = (system, state) => {
 const Selectors = {
   triplePlanetHomeSystem,
   doublePlanetSystem,
+  singlePlanetWormholeSystem,
   specialSystem,
   noOpSystem,
 }
