@@ -27,11 +27,16 @@ export default function Planet(props) {
 }
 
 Planet.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
+  x: PropTypes.number,
+  y: PropTypes.number,
   name: PropTypes.string.isRequired,
   resources: PropTypes.number.isRequired,
   influence: PropTypes.number.isRequired,
   specialty: PropTypes.string,
   troops: PropTypes.object,
+}
+
+Planet.defaultProps = {
+  x: -45,
+  y: -25,
 }

@@ -7,6 +7,7 @@ export default function TriplePlanetHomeSystem(props) {
   return (
     <DefaultSystemShape hex={props.hex} layout={props.layout}>
       <Fleet troops={{}}/>
+      <text textAnchor="middle">{`${props.hex.q} ${props.hex.r} ${props.hex.s}`}</text>
     </DefaultSystemShape>
   )
 }

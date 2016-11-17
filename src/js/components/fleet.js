@@ -18,11 +18,13 @@ export default function Fleet(props) {
   const children = Object.keys(units)
     .map((civ) => {
       return Object.keys(units[civ])
-        .map((u, i) =>
-          <span key={i} className={`fleet__unit unit unit--${civ} sm ${dashify(u)}`}>
-            {units[civ][u]}
+        .map((u, i) => {
+          const badge = units[civ][u] > 1 ? <span className="fleet__badge">{units[civ][u]}</span> : null;
+
+          return <span key={i} className={`fleet__unit unit unit--${civ} sm ${dashify(u)}`}>
+            {badge}
           </span>
-        );
+        });
     })
     .reduce((acc, civUnits) => acc.concat(civUnits), [])
 

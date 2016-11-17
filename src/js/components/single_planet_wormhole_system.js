@@ -21,5 +21,5 @@ export default function SinglePlanetWormholeSystem(props) {
 SinglePlanetWormholeSystem.propTypes = {
   systemTroops: PropTypes.object.isRequired,
   planets: PropTypes.object.isRequired,
-  wormholes: PropTypes.object.isRequired,
+  wormholes: PropTypes.array.isRequired,
 }

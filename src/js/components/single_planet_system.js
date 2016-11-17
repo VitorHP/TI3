@@ -2,20 +2,21 @@ import React, { PropTypes } from 'react';
 import Fleet from './fleet';
 
 import DefaultSystemShape from './default_system_shape';
-import DoublePlanet from './double_planet';
+import Planet from './planet';
 
-export default function DoublePlanetSystem(props) {
+export default function SinglePlanetSystem(props) {
   const { hex, layout, systemTroops, planets } = props;
+  const planetKeys = Object.keys(planets);
 
   return (
     <DefaultSystemShape hex={hex} layout={layout}>
       <Fleet troops={systemTroops}/>
-      <DoublePlanet planets={planets} />
+      <Planet {...planets[planetKeys[0]]}/>
     </DefaultSystemShape>
   )
 }
 
-DoublePlanetSystem.propTypes = {
+SinglePlanetSystem.propTypes = {
   systemTroops: PropTypes.object.isRequired,
   planets: PropTypes.object.isRequired,
 }

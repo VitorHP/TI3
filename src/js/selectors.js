@@ -40,11 +40,16 @@ const triplePlanetHomeSystem = createStructuredSelector({
   planets,
 })
 
+const doublePlanetHomeSystem = triplePlanetHomeSystem;
+const singlePlanetHomeSystem = triplePlanetHomeSystem;
+
 const doublePlanetSystem = createStructuredSelector({
   kind,
   systemTroops,
   planets,
 })
+
+const singlePlanetSystem = doublePlanetSystem;
 
 const specialSystem = createStructuredSelector({
   kind,
@@ -64,7 +69,10 @@ const noOpSystem = (system, state) => {
 
 const Selectors = {
   triplePlanetHomeSystem,
+  doublePlanetHomeSystem,
+  singlePlanetHomeSystem,
   doublePlanetSystem,
+  singlePlanetSystem,
   singlePlanetWormholeSystem,
   specialSystem,
   noOpSystem,

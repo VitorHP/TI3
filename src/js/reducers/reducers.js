@@ -34,6 +34,16 @@ let initialState = {
     }
   },
   planets: {
+    zeroZeroZero: {
+      name: "[0.0.0]",
+      resources: 5,
+      influence: 0
+    },
+    arcPrime: {
+      name: "Arc Prime",
+      resources: 4,
+      influence: 0
+    },
     arretze: {
       name: "Arretze",
       resources: 2,
@@ -50,6 +60,11 @@ let initialState = {
       resources: 1,
       influence: 1
     },
+    jord: {
+      name: "Jord",
+      resources: 4,
+      influence: 2
+    },
     kamdorn: {
       name: "Kamdorn",
       resources: 0,
@@ -65,12 +80,31 @@ let initialState = {
       name: "Lirta IV",
       resources: 2,
       influence: 3
-    }
+    },
+    tibah: {
+      name: "Tibah",
+      resources: 1,
+      influence: 1
+    },
+    wrenTerra: {
+      name: "Wren Terra",
+      resources: 2,
+      influence: 1
+    },
   },
   races: {
     hacan: {
       name: "Emirates of Hacan",
-    }
+    },
+    letnev: {
+      name: "Barony of Letnev",
+    },
+    l1z1x: {
+      name: "L1z1x Mindnet",
+    },
+    sol: {
+      name: "Federation of Sol",
+    },
   },
   grid: {
     config: gridConfig,
@@ -87,7 +121,14 @@ let initialState = {
       {
         q: -3,
         r: 1,
-        s: 2
+        s: 2,
+        system: {
+          kind: 'SinglePlanetSystem',
+          troops: { },
+          planets: {
+            tibah: { },
+          },
+        }
       },
       {
         q: -3,
@@ -164,7 +205,22 @@ let initialState = {
       {
         q: -2,
         r: 3,
-        s: -1
+        s: -1,
+        system: {
+          homeOwner: "sol",
+          kind: "SinglePlanetHomeSystem",
+          troops: {
+            sol: ["groundForces", "groundForces", "groundForces", "groundForces", "groundForces", "carrier", "carrier", "destroyer"],
+          },
+          planets: {
+            jord: {
+              owner: "sol",
+              troops: {
+                sol: ["spaceDock"],
+              },
+            },
+          },
+        }
       },
       {
         q: -1,
@@ -264,7 +320,22 @@ let initialState = {
       {
         q: 2,
         r: -3,
-        s: 1
+        s: 1,
+        system: {
+          homeOwner: "l1z1x",
+          kind: "SinglePlanetHomeSystem",
+          troops: {
+            l1z1x: ["groundForces", "groundForces", "groundForces", "groundForces", "groundForces", "pds", "fighter", "fighter", "fighter", "carrier", "dreadnought"],
+          },
+          planets: {
+            zeroZeroZero: {
+              owner: "l1z1x",
+              troops: {
+                l1z1x: ["spaceDock"],
+              },
+            },
+          },
+        }
       },
       {
         q: 2,
@@ -284,7 +355,25 @@ let initialState = {
       {
         q: 2,
         r: 1,
-        s: -3
+        s: -3,
+        system: {
+          homeOwner: "letnev",
+          kind: "DoublePlanetHomeSystem",
+          troops: {
+            letnev: ["groundForces", "groundForces", "groundForces", "destroyer", "dreadnought", "carrier"],
+          },
+          planets: {
+            arcPrime: {
+              owner: "letnev",
+              troops: {
+                letnev: ["spaceDock"],
+              },
+            },
+            wrenTerra: {
+              owner: "letnev",
+            },
+          },
+        }
       },
       {
         q: 3,
