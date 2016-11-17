@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Fleet from './fleet';
+import FleetContainer from '../containers/fleet_container';
 
 import SpecialSystemShape from './special_system_shape';
 import SystemLabel from './system_label';

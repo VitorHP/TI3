@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Fleet from './fleet';
+import FleetContainer from '../containers/fleet_container';
 
 import DefaultSystemShape from './default_system_shape';
 import Planet from './planet';
@@ -10,7 +10,7 @@ export default function SinglePlanetSystem(props) {
 
   return (
     <DefaultSystemShape hex={hex} layout={layout}>
-      <Fleet troops={systemTroops}/>
+      <FleetContainer troops={systemTroops}/>
       <Planet {...planets[planetKeys[0]]}/>
     </DefaultSystemShape>
   )

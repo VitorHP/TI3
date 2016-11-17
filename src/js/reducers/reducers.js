@@ -95,15 +95,19 @@ let initialState = {
   races: {
     hacan: {
       name: "Emirates of Hacan",
+      color: "red"
     },
     letnev: {
       name: "Barony of Letnev",
+      color: "green"
     },
     l1z1x: {
       name: "L1z1x Mindnet",
+      color: "purple"
     },
     sol: {
       name: "Federation of Sol",
+      color: "blue"
     },
   },
   grid: {
@@ -152,7 +156,7 @@ let initialState = {
           homeOwner: "hacan",
           kind: "TriplePlanetHomeSystem",
           troops: {
-            hacan: ["groundForces", "groundForces", "groundForces", "groundForces", "carrier", "carrier", "fighter", "fighter", "cruiser"],
+            hacan: ["groundForces", "groundForces", "groundForces", "groundForces", "fighter", "fighter", "cruiser", "carrier", "carrier"],
           },
           planets: {
             arretze: {
@@ -210,7 +214,7 @@ let initialState = {
           homeOwner: "sol",
           kind: "SinglePlanetHomeSystem",
           troops: {
-            sol: ["groundForces", "groundForces", "groundForces", "groundForces", "groundForces", "carrier", "carrier", "destroyer"],
+            sol: ["groundForces", "groundForces", "groundForces", "groundForces", "groundForces", "destroyer", "carrier", "carrier"],
           },
           planets: {
             jord: {
@@ -360,7 +364,7 @@ let initialState = {
           homeOwner: "letnev",
           kind: "DoublePlanetHomeSystem",
           troops: {
-            letnev: ["groundForces", "groundForces", "groundForces", "destroyer", "dreadnought", "carrier"],
+            letnev: ["groundForces", "groundForces", "groundForces", "destroyer", "carrier", "dreadnought"],
           },
           planets: {
             arcPrime: {

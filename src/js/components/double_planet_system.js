@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Fleet from './fleet';
+import FleetContainer from '../containers/fleet_container';
 
 import DefaultSystemShape from './default_system_shape';
 import DoublePlanet from './double_planet';
@@ -9,7 +9,7 @@ export default function DoublePlanetSystem(props) {
 
   return (
     <DefaultSystemShape hex={hex} layout={layout}>
-      <Fleet troops={systemTroops}/>
+      <FleetContainer troops={systemTroops}/>
       <DoublePlanet planets={planets} />
     </DefaultSystemShape>
   )

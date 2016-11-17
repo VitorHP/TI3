@@ -1,17 +1,18 @@
 import React, { PropTypes } from 'react';
 
-import Fleet from './fleet';
+import FleetContainer from '../containers/fleet_container';
 
 export default function Planet(props) {
-  const { x, y, name, resources, influence, specialty, troops } = props;
+  const { x, y, name, resources, influence, specialty, troops, owner } = props;
 
   const techSpecialty = specialty ? <span className={`tech ${specialty}`}/> : null;
+
   return (
     <svg x={x} y={y} height={100} width={200}>
       <g>
         <foreignObject width="96">
           <div className="system__planet">
-            <i className="system__planet-icon planet sm"/>
+            <i className={`system__planet-icon planet sm ${owner.color || 'white'}`}/>
             <div className="system__planet-name">{name}</div>
             <div className="system__planet-stats">
               <span className="system__planet-resources">{resources}</span>
@@ -20,7 +21,7 @@ export default function Planet(props) {
             </div>
           </div>
         </foreignObject>
-        <Fleet x={20} y={60} troops={troops} />
+        <FleetContainer x={20} y={60} troops={troops} />
       </g>
     </svg>
   )
@@ -33,6 +34,7 @@ Planet.propTypes = {
   resources: PropTypes.number.isRequired,
   influence: PropTypes.number.isRequired,
   specialty: PropTypes.string,
+  owner: PropTypes.object,
   troops: PropTypes.object,
 }
 

@@ -21,7 +21,7 @@ const planets = (system, state) => {
     .reduce((acc, p) => {
       acc[p] = {
         ...state.planets[p],
-        owner: state.races[system.planets[p].owner],
+        owner: state.races[system.planets[p].owner] || {},
         troops: system.planets[p].troops || {}
       }
 
