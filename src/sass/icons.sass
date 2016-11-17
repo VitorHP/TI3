@@ -4,7 +4,8 @@ $multiplier: 1
 .unit,
 .tech,
 .cards,
-.planet
+.planet,
+.wormhole
   display: inline-block
   height: 16px
   background-image: url(../images/units-16.png)
@@ -140,3 +141,15 @@ $multiplier: 1
 
   &__political
     background-position-x: -160px
+
+.wormhole
+  &.sm
+    width: 64px
+    height: 64px
+    background-position-y: 64px
+
+    &.alpha
+      background-position-x: -64px
+
+    &.beta
+      background-position-x: -128px

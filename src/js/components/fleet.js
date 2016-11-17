@@ -38,12 +38,13 @@ export default function Fleet(props) {
 }
 
 Fleet.propTypes = {
-  troops: PropTypes.object.isRequired,
+  troops: PropTypes.object,
   x: PropTypes.number,
   y: PropTypes.number
 }
 
 Fleet.defaultProps = {
   x: -70,
-  y: -125
+  y: -125,
+  troops: {}
 }

@@ -41,6 +41,17 @@ const triplePlanetHomeSystem = createSelector(
   }
 )
 
+const doublePlanetSystem = createSelector(
+  [kind, systemTroops, planets],
+  (kind, systemTroops, planets) => {
+    return {
+      kind,
+      systemTroops,
+      planets,
+    }
+  }
+)
+
 const specialSystem = createSelector(
   [name, kind],
   (name, kind) => ({
@@ -55,6 +66,7 @@ const noOpSystem = (system, state) => {
 
 const Selectors = {
   triplePlanetHomeSystem,
+  doublePlanetSystem,
   specialSystem,
   noOpSystem,
 }

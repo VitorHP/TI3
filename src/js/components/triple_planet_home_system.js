@@ -22,5 +22,6 @@ export default function TriplePlanetHomeSystem(props) {
 
 TriplePlanetHomeSystem.propTypes = {
   homeOwner: PropTypes.object.isRequired,
-  systemTroops: PropTypes.object.isRequired
+  systemTroops: PropTypes.object.isRequired,
+  planets: PropTypes.object.isRequired,
 }

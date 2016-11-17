@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Fleet from './fleet';
 
@@ -24,4 +24,14 @@ export default function Planet(props) {
       </g>
     </svg>
   )
+}
+
+Planet.propTypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  resources: PropTypes.number.isRequired,
+  influence: PropTypes.number.isRequired,
+  specialty: PropTypes.string,
+  troops: PropTypes.object,
 }

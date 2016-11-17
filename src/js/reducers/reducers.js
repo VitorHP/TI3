@@ -39,6 +39,12 @@ let initialState = {
       resources: 2,
       influence: 0
     },
+    bereg: {
+      name: "Bereg",
+      resources: 3,
+      influence: 1,
+      specialty: "biologic",
+    },
     hercant: {
       name: "Hercant",
       resources: 1,
@@ -48,6 +54,11 @@ let initialState = {
       name: "Kamdorn",
       resources: 0,
       influence: 1
+    },
+    lirtaIv: {
+      name: "Lirta IV",
+      resources: 2,
+      influence: 3
     }
   },
   races: {
@@ -115,7 +126,16 @@ let initialState = {
       {
         q: -2,
         r: 0,
-        s: 2
+        s: 2,
+        system: {
+          homeOwner: "hacan",
+          kind: "DoublePlanetSystem",
+          troops: { },
+          planets: {
+            bereg: { },
+            lirtaIv: { },
+          },
+        }
       },
       {
         q: -2,
