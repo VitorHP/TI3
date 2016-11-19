@@ -72,6 +72,8 @@ const noOpSystem = (system, state) => {
   return system;
 }
 
+const races = (state) => state.races
+
 const Selectors = {
   triplePlanetHomeSystem,
   doublePlanetHomeSystem,
@@ -82,6 +84,8 @@ const Selectors = {
   specialSystem,
   noOpSystem,
   emptySystem,
+
+  races,
 }
 
 export default Selectors;
