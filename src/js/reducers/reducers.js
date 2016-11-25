@@ -15,6 +15,13 @@ const gridConfig = {
 //       .getGenerator(gridConfig.map)
 //       .apply(this, gridConfig.mapProps)
 let initialState = {
+  ui: {
+    raceSheets: {
+      hacan: {
+        expanded: true,
+      },
+    }
+  },
   strategyCards: {
     initiative: {
       name: "Initiative",
@@ -235,7 +242,8 @@ let initialState = {
   races: {
     hacan: {
       name: "Emirates of Hacan",
-      color: "red"
+      color: "red",
+      technologies: ['enviroCompensator', 'sarwenTools']
     },
     letnev: {
       name: "Barony of Letnev",
@@ -1557,6 +1565,646 @@ let initialState = {
       }
     }
   ],
+  technologies: {
+    advancedFighters: {
+      andor: "and",
+      color: "blue",
+      description: "Your Fighters receive +1 to all combat rolls. Also, they no longer need the support of a Carrier or Space Dock and may move independently with a movement rate of 2. Fighters in excess of a sytem's normal capacity will count towards your Fleet Supply limit.",
+      modifiers: [
+        {
+          id: "tech-advanced-fighters",
+          modify: {
+            battle: "+1"
+          },
+          scope: "combat",
+          unitRequires: {
+            id: "fighter"
+          }
+        }
+      ],
+      name: "Advanced Fighters",
+      prerequisites: [
+        "typeIvDrive"
+      ]
+    },
+    antimassDeflectors: {
+      andor: "and",
+      color: "blue",
+      description: "Your ships may pass through, but not stop in, Asteroid Fields.",
+      modifiers: [
+
+      ],
+      name: "Antimass Deflectors",
+      prerequisites: [
+
+      ]
+    },
+    assaultCannon: {
+      andor: "and",
+      color: "red",
+      description: "Dreadnoughts get one free shot before any Space Battle begins. Casualties are removed immediately with no return fire.",
+      modifiers: [
+        {
+          duration: 1,
+          id: "tech-assault-cannon",
+          round: 0,
+          scope: "space",
+          special: "TBD",
+          unitRequires: {
+            id: "dreadnought"
+          }
+        }
+      ],
+      name: "Assault Cannon",
+      plumbing: {
+        anchorsIn: {
+          cybernetics: "Left"
+        },
+        stub: [
+          221,
+          10
+        ]
+      },
+      prerequisites: [
+        "cybernetics",
+        "automatedDefenseTurrets"
+      ]
+    },
+    automatedDefenseTurrets: {
+      andor: "and",
+      color: "red",
+      description: "During all Anti-Fighter Barrage rolls Destroyers receive +2 and an additional die.",
+      expansion: "se",
+      modifiers: [
+        {
+          duration: 1,
+          id: "tech-defense-turrets",
+          modify: {
+            battle: "+2",
+            dice: "+1"
+          },
+          round: 0,
+          scope: "space",
+          summary: "Destroyers, extra die and +2",
+          unitRequires: {
+            id: "destroyer"
+          }
+        }
+      ],
+      name: "Automated Defense Turrets",
+      plumbing: {
+        anchorsOut: {
+          assaultCannon: "Left"
+        },
+        stub: [
+          155,
+          10
+        ]
+      },
+      prerequisites: [
+        "hylarVAssaultLaser"
+      ]
+    },
+    cybernetics: {
+      andor: "or",
+      color: "green",
+      description: "Fighters receive +1 on all combat rolls.",
+      modifiers: [
+        {
+          id: "tech-cybernetics",
+          modify: {
+            battle: "+1"
+          },
+          scope: "combat",
+          summary: "Fighters always +1",
+          unitRequires: {
+            id: "fighter"
+          }
+        }
+      ],
+      name: "Cybernetics",
+      plumbing: {
+        anchorsIn: {
+          stasisCapsules: "Left"
+        },
+        "stub": [
+          84,
+          5
+        ]
+      },
+      prerequisites: [
+        "stasisCapsules",
+        "antimassDeflectors"
+      ]
+    },
+    dacxiveAnimators: {
+      "andor": "and",
+      "color": "green",
+      "description": "If you win an Invasion Combat, roll one die for every Ground Force unit killed (yours and your opponent's). Every roll of 6+ gains you one free Ground Force to be placed on that planet.",
+      "modifiers": [
+
+      ],
+      "name": "Dacxive Animators",
+      "plumbing": {
+        "stub": [
+          10,
+          20
+        ]
+      },
+      "prerequisites": [
+        "neuralMotivator"
+      ]
+    },
+    deepSpaceCannon: {
+      "andor": "and",
+      "color": "red",
+      "description": "Enemy fleets in adjacent systems are now in range of your PDS.",
+      "modifiers": [
+
+      ],
+      "name": "Deep Space Cannon",
+      "plumbing": {
+        "anchorsOut": {
+          "war-sun": "Right"
+        },
+        "stub": [
+          5,
+          30
+        ]
+      },
+      "prerequisites": [
+        "hylarVAssaultLaser"
+      ]
+    },
+    enviroCompensator: {
+      "andor": "and",
+      "color": "yellow",
+      "description": "Production capacity of your Space Docks is increased by 1.",
+      "modifiers": [
+
+      ],
+      "name": "Enviro Compensator",
+      "prerequisites": [
+
+      ]
+    },
+    fleetLogistics: {
+      "andor": "and",
+      "color": "blue",
+      "description": "When taking a Tactical Action, you may now take 2 Tactical Actions, one after the other, before your turn ends.",
+      "modifiers": [
+
+      ],
+      "name": "Fleet Logistics",
+      "prerequisites": [
+        "gravitonNegator"
+      ]
+    },
+    genSynthesis: {
+      "andor": "and",
+      "color": "green",
+      "description": "All of your Ground Forces receive +1 during Invasion Combat. When destroyed, roll one die. On a result of 5+ return the unit to your Home System.",
+      "modifiers": [
+        {
+          "id": "tech-gen-synthesis",
+          "modify": {
+            "battle": "+1"
+          },
+          "scope": "ground",
+          "summary": "Ground Forces +1",
+          "unitRequires": {
+            "id": [
+              "ground",
+              "shock"
+            ]
+          }
+        }
+      ],
+      "name": "Gen Synthesis",
+      "plumbing": {
+        "stub": [
+          30,
+          10
+        ]
+      },
+      "prerequisites": [
+        "cybernetics"
+      ]
+    },
+    gravitonLaserSystem: {
+      "andor": "and",
+      "color": "yellow",
+      "description": "PDS get one re-roll for each missed combat roll.",
+      "modifiers": [
+        {
+          "id": "tech-graviton-laser",
+          "modify": {
+            "rerolls": 1
+          },
+          "scope": "combat",
+          "summary": "PDS get a re-roll on misses",
+          "unitRequires": {
+            "id": "pds"
+          }
+        }
+      ],
+      "name": "Graviton Laser System",
+      "plumbing": {
+        "anchorsIn": {
+          "deep-space-cannon": "Right"
+        }
+      },
+      "prerequisites": [
+        "deepSpaceCannon"
+      ]
+    },
+    gravitonNegator: {
+      "andor": "or",
+      "color": "red",
+      "description": "Dreadnoughts may bombard planets containing PDS units. Your Fighters may participate in Invasion Combat. Surviving Fighters return to space after combat and may never establish control of a planet.",
+      "modifiers": [
+        {
+          "duration": 1,
+          "id": "tech-graviton-negator-dreadnought",
+          "modify": {
+            "ignorePds": true
+          },
+          "round": 0,
+          "scope": "ground",
+          "unitRequires": {
+            "id": "dreadnought"
+          }
+        },
+        {
+          "id": "tech-graviton-negator-fighter",
+          "modify": {
+            "activeGroundCombatUnit": true
+          },
+          "round": 0,
+          "scope": "ground",
+          "stance": "attacker",
+          "unitRequires": {
+            "id": "fighter"
+          }
+        }
+      ],
+      "name": "Graviton Negator",
+      "plumbing": {
+        "anchorsIn": {
+          "assault-cannon": "Right"
+        }
+      },
+      "prerequisites": [
+        "assaultCannon",
+        "dacxiveAnimators"
+      ]
+    },
+    hylarVAssaultLaser: {
+      "color": "red",
+      "description": "Cruisers and Destroyers receive +1 in all combat rolls.",
+      "modifiers": [
+        {
+          "id": "tech-hylar",
+          "modify": {
+            "battle": "+1"
+          },
+          "scope": "combat",
+          "summary": "Cruisers, Destroyers always +1",
+          "unitRequires": {
+            "id": [
+              "cruiser",
+              "destroyer"
+            ]
+          }
+        }
+      ],
+      "name": "Hylar V Assault Laser"
+    },
+    hyperMetabolism: {
+      "andor": "and",
+      "color": "green",
+      "description": "During each Status Phase you gain 1 additional Command Counter. Also, before drawing Action Cards you may discard 1 from your hand to draw 1 additional card.",
+      "expansion": "se",
+      "modifiers": [
+
+      ],
+      "name": "Hyper Metabolism",
+      "prerequisites": [
+        "gen-synthesis"
+      ]
+    },
+    integratedEconomy: {
+      "andor": "and",
+      "color": "yellow",
+      "description": "When producing units at your Space Docks you may place them in any activated adjacent system that is empty or friendly. You may place PDS and Ground Force units on any friendly planet within this range.",
+      "modifiers": [
+
+      ],
+      "name": "Integrated Economy",
+      "plumbing": {
+        "anchorsIn": {
+          "cybernetics": "Right"
+        }
+      },
+      "prerequisites": [
+        "microTechnology",
+        "cybernetics"
+      ]
+    },
+    lightWaveDeflector: {
+      "andor": "and",
+      "color": "blue",
+      "description": "Your ships may move through systems containing enemy ships and continue their movement to the activated system.",
+      "modifiers": [
+
+      ],
+      "name": "Light\/Wave Deflector",
+      "plumbing": {
+        "anchorsIn": {
+          "xrd-transporters": "Left"
+        },
+        "stub": [
+          195,
+          10
+        ]
+      },
+      "prerequisites": [
+        "magenDefenseGrid",
+        "xrdTransporters"
+      ]
+    },
+    magenDefenseGrid: {
+      "andor": "and",
+      "color": "red",
+      "description": "Your PDS units receive +1 on all combat rolls. Defending Ground Forces with a PDS get +1 on all combat rolls during Invasion Combat.",
+      "modifiers": [
+        {
+          "id": "tech-magen-ground-forces",
+          "modify": {
+            "battle": "+1"
+          },
+          "scope": "ground",
+          "stance": "defender",
+          "summary": "Ground Forces +1 with PDS",
+          "supportRequires": {
+            "id": "pds"
+          },
+          "unitRequires": {
+            "id": [
+              "ground",
+              "shock"
+            ]
+          }
+        },
+        {
+          "id": "tech-magen-pds",
+          "modify": {
+            "battle": "+1"
+          },
+          "scope": "combat",
+          "summary": "PDS get +1",
+          "unitRequires": {
+            "id": "pds"
+          }
+        }
+      ],
+      "name": "Magen Defense Grid",
+      "prerequisites": [
+        "deepSpaceCannon"
+      ]
+    },
+    maneuveringJets: {
+      "andor": "and",
+      "color": "blue",
+      "description": "Opponent receives -1 on all PDS rolls targeting your ships (or -2 if firing from an adjacent system). Additionally you receive -1 to all your Space Mine rolls and ships don't have to stop for Ion Storms.",
+      "expansion": "se",
+      "modifiers": [
+
+      ],
+      "name": "Maneuvering Jets",
+      "prerequisites": [
+        "xrdTransporters"
+      ]
+    },
+    microTechnology: {
+      "andor": "or",
+      "color": "yellow",
+      "description": "When you receive Trade Goods from your Trade Agreements, you now receive +1 Trade Good for each of your active Trade Agreements.",
+      "modifiers": [
+
+      ],
+      "name": "Micro Technology",
+      "plumbing": {
+        "anchorsIn": {
+          "stasis-capsules": "Right"
+        },
+        "stub": [
+          5,
+          20
+        ]
+      },
+      "prerequisites": [
+        "sarweenTools",
+        "stasisCapsules"
+      ]
+    },
+    nanoTechnology: {
+      "andor": "and",
+      "color": "yellow",
+      "description": "Your Dreadnoughts and War Suns may not be targeted by Action Cards. When you claim a planet, you gain its planet card refreshed.",
+      "expansion": "se",
+      "modifiers": [
+
+      ],
+      "name": "Nano Technology",
+      "prerequisites": [
+        "microTechnology"
+      ]
+    },
+    neuralMotivator: {
+      "andor": "or",
+      "color": "green",
+      "description": "Draw one extra Action Card during each Status Phase.",
+      "modifiers": [
+
+      ],
+      "name": "Neural Motivator",
+      "plumbing": {
+        "anchorsIn": {
+          "micro-technology": "Left",
+          "stasis-capsules": "Right"
+        },
+        "stub": [
+          40,
+          10
+        ]
+      },
+      "prerequisites": [
+        "stasisCapsules",
+        "microTechnology"
+      ]
+    },
+    sarweenTools: {
+      "andor": "and",
+      "color": "yellow",
+      "description": "Whenever you produce units at any Space Dock, you now receive +1 resource with which to build units.",
+      "modifiers": [
+
+      ],
+      "name": "Sarween Tools",
+      "plumbing": {
+        "stub": [
+          5,
+          16
+        ]
+      },
+      "prerequisites": [
+        "enviroCompensator"
+      ]
+    },
+    stasisCapsules: {
+      "andor": "and",
+      "color": "green",
+      "description": "Cruisers and Dreadnoughts can now carry one Ground Force unit.",
+      "modifiers": [
+
+      ],
+      "name": "Stasis Capsules",
+      "plumbing": {
+        "anchorsOut": {
+          "cybernetics": "Right",
+          "micro-technology": "Left",
+          "neural-motivator": "Right"
+        },
+        "stubs": {
+          "cybernetics": [
+            35,
+            10
+          ],
+          "micro-technology": [
+            10,
+            35
+          ],
+          "neural-motivator": [
+            81,
+            10
+          ]
+        }
+      },
+      "prerequisites": [
+        "enviroCompensator"
+      ]
+    },
+    transitDiodes: {
+      "andor": "and",
+      "color": "yellow",
+      "description": "As an action you may spend 1 Strategic Command Counter to immediately move up to 4 of your Ground Forces from one planet to any other planet you control.",
+      "modifiers": [
+
+      ],
+      "name": "Transit Diodes",
+      "plumbing": {
+        "anchorsIn": {
+          "dacxiveAnimators": "Left"
+        },
+        "stub": [
+          71,
+          15
+        ]
+      },
+      "prerequisites": [
+        "lightWaveDeflector",
+        "dacxiveAnimators"
+      ]
+    },
+    typeIvDrive: {
+      "andor": "and",
+      "color": "blue",
+      "description": "Youre Cruisers and Dreadnoughts now receive +1 movement.",
+      "modifiers": [
+
+      ],
+      "name": "Type IV Drive",
+      "plumbing": {
+        "anchorsIn": {
+          "neural-motivator": "Left"
+        },
+        "stub": [
+          15,
+          61
+        ]
+      },
+      "prerequisites": [
+        "neuralMotivator",
+        "xrdTransporters"
+      ]
+    },
+    warSun: {
+      "andor": "and",
+      "color": "red",
+      "description": "You are now allowed to produce War Sun units.",
+      "modifiers": [
+
+      ],
+      "name": "War Sun",
+      "plumbing": {
+        "anchorsIn": {
+          "deep-space-cannon": "Right",
+          "sarween-tools": "Left"
+        }
+      },
+      "prerequisites": [
+        "deepSpaceCannon",
+        "sarweenTools"
+      ]
+    },
+    X89BacterialWeapon: {
+      "andor": "or",
+      "color": "red",
+      "description": "Instead of normal bombardment your Dreadnought or War Sun units may now immediately destroy all enemy Ground Forces on the planet. Then discard all of your Action Cards.",
+      "modifiers": [
+
+      ],
+      "name": "X-89 Bacterial Weapon",
+      "plumbing": {
+        "anchorsIn": {
+          "transitDiodes": "Left"
+        }
+      },
+      "prerequisites": [
+        "transitDiodes",
+        "assaultCannon"
+      ]
+    },
+    xrdTransporters: {
+      "andor": "and",
+      "color": "blue",
+      "description": "Carriers now receive +1 movement.",
+      "modifiers": [
+
+      ],
+      "name": "Xrd Transporters",
+      "plumbing": {
+        "stubs": {
+          "light-wave-deflector": [
+            213,
+            10
+          ],
+          "maneuvering-jets": [
+            49,
+            0
+          ],
+          "type-iv-drive": [
+            118,
+            100
+          ]
+        }
+      },
+      "prerequisites": [
+        "antimassDeflectors"
+      ]
+    }
+  }
 }
 
 function reducer(state = initialState, action) {

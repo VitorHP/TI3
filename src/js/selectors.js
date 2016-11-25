@@ -74,6 +74,16 @@ const noOpSystem = (system, state) => {
 
 const races = (state) => state.races
 
+const ownedPlanets = (raceId) => {
+
+}
+
+const ownedTechnologies = (raceId) => {}
+
+const race = (state, raceId) => state.races[raceId]
+
+const raceSheetUi = (state, raceId) => state.ui.raceSheets[raceId]
+
 const Selectors = {
   triplePlanetHomeSystem,
   doublePlanetHomeSystem,
