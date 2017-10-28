@@ -53,6 +53,7 @@ class BoardGenerator {
         q: -2,
         r: 1,
         s: 1,
+        system: "WormholeSystem",
       },
       {
         q: -2,
@@ -148,7 +149,8 @@ class BoardGenerator {
       {
         q: 1,
         r: -2,
-        s: 1
+        s: 1,
+        system: "WormholeNexusSystem",
       },
       {
         q: 1,
@@ -165,6 +167,7 @@ class BoardGenerator {
         q: 1,
         r: 1,
         s: -2,
+        system: "WormholeSystem",
       },
       {
         q: 1,
@@ -228,13 +231,13 @@ class BoardGenerator {
 
     this.systems = [
       {
-        wormholes: "\u03b1",
-        kind: "EmptySystem",
+        wormholes: ["alpha"],
+        kind: "WormholeSystem",
         game: "BG"
       },
       {
-        wormholes: "\u03b2",
-        kind: "EmptySystem",
+        wormholes: ["beta"],
+        kind: "WormholeSystem",
         game: "BG"
       },
       {
@@ -735,7 +738,7 @@ class BoardGenerator {
         }
       },
       {
-        wormholes: "\u03b1",
+        wormholes: ["alpha"],
         kind: "SinglePlanetWormholeSystem",
         game: "BG",
         planets: {
@@ -750,7 +753,7 @@ class BoardGenerator {
         }
       },
       {
-        wormholes: "\u03b2",
+        wormholes: ["beta"],
         kind: "SinglePlanetWormholeSystem",
         game: "BG",
         planets: {
@@ -1066,18 +1069,22 @@ class BoardGenerator {
       },
       {
         name: "Asteroid Field",
+        kind: "SpecialSystem",
         game: "SE"
       },
       {
         name: "Supernova",
+        kind: "SpecialSystem",
         game: "SE"
       },
       {
         name: "Nebula",
+        kind: "SpecialSystem",
         game: "SE"
       },
       {
-        wormholes: "\u03b1 and \u03b2",
+        wormholes: ["alpha", "beta"],
+        kind: "WormholeNexusSystem",
         name: "Wormhole Nexus",
         game: "SE",
         planets: {
@@ -1090,10 +1097,12 @@ class BoardGenerator {
       },
       {
         name: "Ion Storm",
+        kind: "SpecialSystem",
         game: "SE"
       },
       {
         name: "Ion Storm",
+        kind: "SpecialSystem",
         game: "SE"
       },
       {
@@ -1105,7 +1114,7 @@ class BoardGenerator {
         game: "SotT"
       },
       {
-        wormholes: "\u03b4",
+        wormholes: ["omega"],
         name: "Ghosts of Creuss",
         game: "SotT",
         planets: {
@@ -1153,7 +1162,7 @@ class BoardGenerator {
         }
       },
       {
-        wormholes: "\u03b4",
+        wormholes: ["omega"],
         name: "The Creuss Gate",
         game: "SotT"
       },
