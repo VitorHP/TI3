@@ -13,13 +13,13 @@ function mapStateToProps(state, ownProps) {
 
   const _hexagons = hexagons.map((h) => {
     const { q, r, s, system } = h;
-    let systemProps = {};
+    // let systemProps = {};
 
-    if (system && system.kind !== undefined) {
-      systemProps = Selectors[camelCase(system.kind)](system, state.reducer);
-    }
+    // if (system && system.kind !== undefined) {
+    //   systemProps = Selectors[camelCase(system.kind)](system, state.reducer);
+    // }
 
-    return new Hex(q, r, s, systemProps);
+    return new Hex(q, r, s, system);
   })
 
   const _layout = new Layout(layout, config.origin);

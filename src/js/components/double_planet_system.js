@@ -16,6 +16,10 @@ export default function DoublePlanetSystem(props) {
 }
 
 DoublePlanetSystem.propTypes = {
-  systemTroops: PropTypes.object.isRequired,
+  systemTroops: PropTypes.object,
   planets: PropTypes.object.isRequired,
+}
+
+DoublePlanetSystem.defaultProps = {
+  systemTroops: {}
 }

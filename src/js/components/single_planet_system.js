@@ -17,6 +17,10 @@ export default function SinglePlanetSystem(props) {
 }
 
 SinglePlanetSystem.propTypes = {
-  systemTroops: PropTypes.object.isRequired,
+  systemTroops: PropTypes.object,
   planets: PropTypes.object.isRequired,
+}
+
+SinglePlanetSystem.defaultProps = {
+  systemTroops: {}
 }

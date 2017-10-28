@@ -41,4 +41,6 @@ Planet.propTypes = {
 Planet.defaultProps = {
   x: -45,
   y: -25,
+  owner: {},
+  troops: {}
 }
