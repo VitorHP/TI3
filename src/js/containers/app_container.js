@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 export default class AppContainer extends Component {
   render() {
     return (
-      <div>
+      <div className="testing">
         {this.props.children}
       </div>
     )

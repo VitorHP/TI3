@@ -1,6 +1,7 @@
 import { CHANGE_TITLE } from '../constants';
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
+import { reducer as stateMachine } from '../ducks/state_machine';
 
 import BoardGenerator from '../board_generator';
 
@@ -231,31 +232,51 @@ let initialState = {
       influence: 1
     },
   },
+  colors: [
+    "red", "green", "purple", "blue", "maroon", "grey"
+  ],
   races: {
     hacan: {
-      name: "Emirates of Hacan",
-      color: "red",
-      technologies: ['enviroCompensator', 'sarwenTools']
+      name: "Emirados de Hacan",
+      slug: 'hacan',
+      startingTechnologies: ['enviroCompensator', 'sarweenTools'],
+      startingUnits: ['groundForces', 'groundForces', 'groundForces', 'groundForces', 'carrier', 'carrier', 'cruiser', 'fighter', 'fighter', 'dock'],
+      specialAbilities: [
+        'Suas Negociações não requerem aprovação durante Negociações de Comércio.',
+        'Você não precisa gastar um Marcador de Comando para executar a habilidade secundária da Estratégia de Comércio. Quando você recebe Mercadorias através de seus Acordos Comerciais, você recebe uma Mercadoria extra.',
+        'Nenhum jogador pode, nunca, exceto por guerra, quebrar um Acordo Comercial com você',
+        'Durante a Fase de Status você pode trocar Cartas de Ação com outros jogadores'
+      ],
     },
     letnev: {
       name: "Barony of Letnev",
-      color: "green"
+      startingTechnologies: [],
+      startingUnits: [],
+      specialAbilities: [],
     },
     l1z1x: {
       name: "L1z1x Mindnet",
-      color: "purple"
+      startingTechnologies: [],
+      startingUnits: [],
+      specialAbilities: [],
     },
     sol: {
       name: "Federation of Sol",
-      color: "blue"
+      startingTechnologies: [],
+      startingUnits: [],
+      specialAbilities: [],
     },
     mentak: {
       name: "Mentak Coalition",
-      color: "maroon"
+      startingTechnologies: [],
+      startingUnits: [],
+      specialAbilities: [],
     },
     naalu: {
       name: "Naalu Collective",
-      color: "grey"
+      startingTechnologies: [],
+      startingUnits: [],
+      specialAbilities: [],
     },
   },
   grid: boardGenerator.build(),
@@ -912,7 +933,8 @@ function reducer(state = initialState, action) {
 }
 
 export const rootReducer = combineReducers({
-  reducer,
-  routing
+  data: reducer,
+  routing,
+  stateMachine
 })
 

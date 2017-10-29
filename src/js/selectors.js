@@ -72,15 +72,26 @@ const noOpSystem = (system, state) => {
   return system;
 }
 
-const races = (state) => state.races
-
 const ownedPlanets = (raceId) => {
 
 }
 
 const ownedTechnologies = (raceId) => {}
 
-const race = (state, raceId) => state.races[raceId]
+const race = (state, raceId) => ({
+  ...state.races[raceId],
+  startingTechnologies: state
+    .races[raceId]
+    .startingTechnologies
+    .map((t) => {
+      return state.technologies[t];
+    }),
+})
+
+export const races = (state) => {
+  return Object.keys(state.races || {})
+    .map((r) => race(state, r), []);
+}
 
 const raceSheetUi = (state, raceId) => state.ui.raceSheets[raceId]
 
@@ -94,8 +105,6 @@ const Selectors = {
   specialSystem,
   noOpSystem,
   emptySystem,
-
-  races,
 }
 
 export default Selectors;
